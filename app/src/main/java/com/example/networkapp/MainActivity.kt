@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         showButton = findViewById<Button>(R.id.showComicButton)
         comicImageView = findViewById<ImageView>(R.id.comicImageView)
 
+        loadComic();
         showButton.setOnClickListener {
             downloadComic(numberEditText.text.toString())
         }
@@ -78,6 +79,20 @@ class MainActivity : AppCompatActivity() {
             outputStream.close()
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun loadComic(){
+        try {
+            if(!file.exists()) return
+
+            val jsonString = file.readText()
+            if(jsonString.isEmpty()) return
+
+            val comicObject = JSONObject(jsonString)
+            showComic(comicObject)
+        }catch (e: Exception){
+            e.printStackTrace();
         }
     }
 
