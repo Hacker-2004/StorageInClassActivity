@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         requestQueue = Volley.newRequestQueue(this)
 
         titleTextView = findViewById<TextView>(R.id.comicTitleTextView)
